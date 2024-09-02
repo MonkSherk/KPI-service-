@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+<p>{{ task.description }}</p>
+<p>Статус: {{ task.get_status_display }}</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить ответ</button>
+</form>
+    {% if request.user.role.name == 'Руководитель' %}
+<a href="{% url 'task-update' task.id %}">Редактировать задачу</a>
+<a href="{% url 'task-delete' task.id %}">Удалить задачу</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'user_APP/layouts/main_reg.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="registration_container">
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register_page' %}">Register</a></p>
+</div>
+{% endblock %}

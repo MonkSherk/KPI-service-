@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>Уведомления</h1>
+<ul>
+    {% for notification in notifications %}
+    <li>
+        {{ notification.text }}
+        {% if notification.type == 'task' %}
+            <a href="{% url 'task-detail' notification.task.id %}">Посмотреть детали</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    <p>Нет новых уведомлений.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

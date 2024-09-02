@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>Отчет по KPI</h1>
+<p>Всего задач: {{ total_tasks }}</p>
+<p>Выполненные задачи: {{ completed_tasks }}</p>
+<p>Просроченные задачи: {{ overdue_tasks }}</p>
+<p>Задачи в процессе: {{ in_progress_tasks }}</p>
+
+{% endblock %}

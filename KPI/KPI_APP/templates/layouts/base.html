@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPI Service</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'task-list' %}">Мои задачи</a></li>
+                <li><a href="{% url 'kpi-report' %}">Отчет по KPI</a></li>
+                <li><a href="{% url 'notifications' %}">Уведомления</a></li>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.role.name == "Руководитель" %}
+                        <li><a href="{% url 'task-create' %}">Создать задачу</a></li>
+                        <li><a href="{% url 'user-list' %}">Список пользователей</a></li>
+                        <li><a href="{% url 'user-create' %}">Создать пользователя</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'logout_page' %}">Выйти</a></li>
+                {% else %}
+                    <li><a href="{% url 'login_page' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer-links">
+            <button class="button"><a href="https://www.youtube.com/watch?v=QOhmcbfwxnA">Кликни для показа порнухи</a></button>
+            <button class="button"><a href="https://www.youtube.com/watch?v=_LHuObCgHj8">Ещё больше порна</a></button>
+        </div>
+        <div class="footer-image">
+            <img src="{% static 'photo_2024-09-02_18-47-31.jpg' %}" alt="Footer Image">
+            <div class="caption">Джанго хуйня! Ларавелл Пизже!</div>
+            <p style="font-size: 10px">"Асад Октамов" 2000-ый год до нашей эры</p>
+        </div>
+    </footer>
+</body>
+</html>

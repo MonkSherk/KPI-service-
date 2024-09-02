@@ -1,0 +1,35 @@
+
+<form method="get" action="{% url 'task-list' %}">
+    <div>
+        <label for="title">Название задачи:</label>
+        <input type="text" id="title" name="title" value="{{ form.title.value }}">
+    </div>
+    <div>
+        <label for="status">Статус:</label>
+        <select id="status" name="status">
+            <option value="">Любой</option>
+            {% for choice in form.fields.status.choices %}
+                <option value="{{ choice.0 }}" {% if form.status.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="assigned_to">Назначено:</label>
+        <select id="assigned_to" name="assigned_to">
+            <option value="">Любой</option>
+            {% for user in form.fields.assigned_to.queryset %}
+                <option value="{{ user.id }}" {% if form.assigned_to.value == user.id %}selected{% endif %}>{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="department">Отдел:</label>
+        <select id="department" name="department">
+            <option value="">Любой</option>
+            {% for department in form.fields.department.queryset %}
+                <option value="{{ department.id }}" {% if form.department.value == department.id %}selected{% endif %}>{{ department.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Фильтровать</button>
+</form>

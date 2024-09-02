@@ -1,0 +1,15 @@
+{% extends 'user_APP/layouts/main_reg.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="registration_container">
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Submit</button>
+    </form>
+    <p>Already have an account<a href="{% url 'login_page' %}">Login</a></p>
+</div>
+{% endblock %}
